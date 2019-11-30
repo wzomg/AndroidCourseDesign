@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <!--collapseActionView：声明了这个操作视窗应该被折叠到一个按钮中，当用户选择这个按钮时，这个操作视窗展开。-->
+    <!--orderInCategory：设置优先级，值越大优先级越低-->
+    <item android:id="@+id/userFeedback" android:title="用户反馈"
+        app:showAsAction="collapseActionView"  tools:ignore="AppCompatRespource" android:orderInCategory="110"/>
+    <item android:id="@+id/userExit" android:title="退出"
+        app:showAsAction="collapseActionView"  tools:ignore="AppCompatRespource" android:orderInCategory="100"/>
+
+</menu>
