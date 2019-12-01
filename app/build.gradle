@@ -33,6 +33,12 @@ dependencies {
     // 添加recyclerview控件的依赖库
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
+    // 添加GSON库的依赖
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // 添加加载图片的依赖库
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

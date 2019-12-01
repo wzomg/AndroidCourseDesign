@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.viewnews">
 
+    <!--添加访问网络的权限-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--SD卡写入:https://blog.csdn.net/haoxuhong/article/details/79864113-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +16,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
+                <!--添加以下一条标签去除警告：https://www.jianshu.com/p/682e85c412a8-->
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
