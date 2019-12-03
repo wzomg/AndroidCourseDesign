@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar =  findViewById(R.id.toolbar);
+        //只需第一次创建本地数据库，第二次运行就注释掉
+        //Connector.getDatabase();
+        //Toast.makeText(MainActivity.this, "创建数据库成功", Toast.LENGTH_LONG).show();
 
         //获取抽屉布局实例
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         //获取菜单控件实例
         navigationView = (NavigationView) findViewById(R.id.nav_design);
 
-        //无法通过findViewById方法获取header布局id
+        //无法直接通过findViewById方法获取header布局id
         View v = navigationView.getHeaderView(0);
 
         CircleImageView circleImageView =(CircleImageView) v.findViewById(R.id.icon_image);
@@ -134,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             具体讲解查看：https://blog.csdn.net/StrongerCoder/article/details/70158836
             https://blog.csdn.net/Mr_LiaBill/article/details/48749807
         */
-        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager(), 1) {
             //以下方法的使用可以查看：https://blog.csdn.net/fyq520521/article/details/80595684
             //得到当前页的标题，也就是设置当前页面显示的标题是tabLayout对应标题
             @Nullable

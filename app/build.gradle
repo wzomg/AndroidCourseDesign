@@ -21,7 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // 添加NavigationView控件的依赖库
@@ -31,15 +31,18 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
 
     // 添加recyclerview控件的依赖库
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // 添加GSON库的依赖
     implementation 'com.google.code.gson:gson:2.8.5'
 
-    // 添加加载图片的依赖库
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    //添加LitePal数据存储依赖
+    implementation 'org.litepal.android:java:3.0.0'
+
+    //添加Glide处理图片库的依赖
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

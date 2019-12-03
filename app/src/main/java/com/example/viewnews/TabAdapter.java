@@ -1,17 +1,15 @@
 package com.example.viewnews;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -21,6 +19,7 @@ public class TabAdapter extends BaseAdapter {
     private List<NewsBean.ResultBean.DataBean> list;
 
     private Context context;
+
 
     //设置正常加载图片的个数
     private int IMAGE_01 = 0;
@@ -34,9 +33,6 @@ public class TabAdapter extends BaseAdapter {
     public TabAdapter(Context context, List<NewsBean.ResultBean.DataBean> list) {
         this.context = context;
         this.list = list;
-        //初始化配置imageLoader类，ImageLoader可以实现异步地加载、缓存及显示网络图片，并且支持多线程异步加载，这里采用单例模式
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(context));
-        //Universal-imageLoader缓存图片加载的使用方法：https://www.2cto.com/kf/201605/511347.html
     }
 
     @Override
@@ -95,8 +91,15 @@ public class TabAdapter extends BaseAdapter {
             //获取数据重新赋值
             holder.title.setText(list.get(position).getTitle());
             holder.author_name.setText(list.get(position).getAuthor_name());
-            //使用displayImage来把URL对应的图片显示在ImageView上
-            ImageLoader.getInstance().displayImage(list.get(position).getThumbnail_pic_s(), holder.image, getOption());
+
+            Glide.with(context)
+                    .load(list.get(position).getThumbnail_pic_s())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image);
+
+
         } else if (getItemViewType(position) == IMAGE_02) {
             Image02_ViewHolder holder;
             if (convertView == null) {
@@ -114,8 +117,19 @@ public class TabAdapter extends BaseAdapter {
             }
             //获取数据重新赋值
             holder.title.setText(list.get(position).getTitle());
-            ImageLoader.getInstance().displayImage(list.get(position).getThumbnail_pic_s(), holder.image001, getOption());
-            ImageLoader.getInstance().displayImage(list.get(position).getThumbnail_pic_s02(), holder.image002, getOption());
+            Glide.with(context)
+                    .load(list.get(position).getThumbnail_pic_s())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image001);
+
+            Glide.with(context)
+                    .load(list.get(position).getThumbnail_pic_s02())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image002);
 
         } else {
             Image03_ViewHolder holder;
@@ -133,28 +147,30 @@ public class TabAdapter extends BaseAdapter {
             }
             //获取数据重新赋值
             holder.title.setText(list.get(position).getTitle());
-            ImageLoader.getInstance().displayImage(list.get(position).getThumbnail_pic_s(), holder.image01, getOption());
-            ImageLoader.getInstance().displayImage(list.get(position).getThumbnail_pic_s02(), holder.image02, getOption());
-            ImageLoader.getInstance().displayImage(list.get(position).getThumbnail_pic_s03(), holder.image03, getOption());
+
+            Glide.with(context)
+                    .load(list.get(position).getThumbnail_pic_s())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image01);
+
+            Glide.with(context)
+                    .load(list.get(position).getThumbnail_pic_s02())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image02);
+
+            Glide.with(context)
+                    .load(list.get(position).getThumbnail_pic_s03())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.image03);
+
         }
         return convertView;
-    }
-
-    //配置图片加载失败和加载中显示的Android小机器人logo，具体讲解：https://www.cnblogs.com/tianzhijiexian/p/4034304.html
-    public static DisplayImageOptions getOption() {
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher) // 设置图片下载期间显示的图片
-                .showImageForEmptyUri(R.mipmap.ic_launcher) // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.mipmap.ic_launcher) // 设置图片加载或解码过程中发生错误显示的图片
-                .resetViewBeforeLoading(true)  // （default）设置图片在加载前是否重置、复位
-                .delayBeforeLoading(1000)  // 下载前的延迟时间
-                .cacheInMemory(true) // default  设置下载的图片是否缓存在内存中
-                .cacheOnDisk(true) // default  设置下载的图片是否缓存在SD卡中
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED) // default 设置图片以如何的编码方式显示
-                .bitmapConfig(Bitmap.Config.RGB_565) // default 设置图片的解码类型
-                .build(); //构建完成
-
-        return options;
     }
 
     //新增3个内部类
