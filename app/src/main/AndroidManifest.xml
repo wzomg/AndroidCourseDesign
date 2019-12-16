@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.viewnews">
-
-    <!--添加访问网络的权限-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--SD卡写入:https://blog.csdn.net/haoxuhong/article/details/79864113-->
+    <!-- 添加访问网络的权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- SD卡写入:https://blog.csdn.net/haoxuhong/article/details/79864113 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -15,12 +13,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".usermodel.EditArticleActivity"></activity>
+        <activity android:name=".usermodel.ArticleDetailActivity" />
+        <activity android:name=".usermodel.ArticleActivity" />
+        <activity android:name=".usermodel.UserFavoriteActivity" />
+        <activity android:name=".usermodel.UserDetailActivity" />
+        <activity android:name=".usermodel.RegisterActivity" />
+        <activity android:name=".usermodel.LoginActivity" />
+        <activity android:name=".WebActivity" />
+        <!--
+            使用singleTask会在返回栈中检查是否存在该活动实例，
+        若存在则直接使用该实例，并把这个活动之上的所有活动统统出栈，
+        若没有发现就会创建一个新的活动实例
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
-                <!--添加以下一条标签去除警告：https://www.jianshu.com/p/682e85c412a8-->
+
+                <!-- 添加以下一条标签去除警告：https://www.jianshu.com/p/682e85c412a8 -->
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

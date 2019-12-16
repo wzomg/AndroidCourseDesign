@@ -23,11 +23,14 @@
             android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--新闻列表-->
+            <!--新闻列表，去掉间隔线
+                android:divider="@color/colorWhite"
+            -->
             <ListView
                 android:id="@+id/newsListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:divider="@color/colorWhite"
                 android:scrollbars="none">
             </ListView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

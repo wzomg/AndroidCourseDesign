@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".usermodel.LoginActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/login_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher_foreground" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/textview_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="账号注册"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/register_userAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:hint="请输入注册账号"
+        android:singleLine="true"
+        android:maxLines="1"
+        />
+
+
+    <EditText
+        android:id="@+id/register_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="请输入登录密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:maxLines="1"
+        />
+
+    <EditText
+        android:id="@+id/confirm_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="请确定登录密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:maxLines="1"
+        />
+
+    <Button
+        android:id="@+id/register_click"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="注册"
+        android:textColor="@color/colorGray"
+        android:textStyle="bold" />
+</LinearLayout>

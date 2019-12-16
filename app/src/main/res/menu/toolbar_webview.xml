@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--always表示永远显示在toolbar中
+    tools:ignore：ignore属性是告诉Lint忽略xml中的某些警告。
+    collapseActionView：声明了这个操作视窗应该被折叠到一个按钮中，当用户选择这个按钮时，这个操作视窗展开。
+    -->
+    <!--<item android:id="@+id/news_search" android:orderInCategory="80"
+        android:title="搜索" app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />-->
+    <item android:id="@+id/news_setting" android:title="夜间模式"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="90"/>
+    <item android:id="@+id/news_feedback" android:title="举报"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="100"/>
+</menu>

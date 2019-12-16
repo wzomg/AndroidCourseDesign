@@ -20,7 +20,6 @@ public class TabAdapter extends BaseAdapter {
 
     private Context context;
 
-
     //设置正常加载图片的个数
     private int IMAGE_01 = 0;
 
@@ -92,6 +91,9 @@ public class TabAdapter extends BaseAdapter {
             holder.title.setText(list.get(position).getTitle());
             holder.author_name.setText(list.get(position).getAuthor_name());
 
+            /**
+             * DiskCacheStrategy.NONE： 表示不缓存任何内容。
+             */
             Glide.with(context)
                     .load(list.get(position).getThumbnail_pic_s())
                     .diskCacheStrategy(DiskCacheStrategy.NONE)

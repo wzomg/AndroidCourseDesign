@@ -4,6 +4,8 @@ buildscript {
     repositories {
         google()
         jcenter()
+        // 导入第3方弹出窗，必须配置这个
+        mavenCentral()
         
     }
     dependencies {

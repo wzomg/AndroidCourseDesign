@@ -1,6 +1,7 @@
 package com.example.viewnews;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -40,7 +41,7 @@ public class NewsFragment extends Fragment {
     //下拉刷新
     private SwipeRefreshLayout swipeRefreshLayout;
     //新闻子项
-    private List<NewsBean.ResultBean.DataBean> contentItems;
+    private List<NewsBean.ResultBean.DataBean> contentItems = new ArrayList<>();
 
     private static final int UPNEWS_INSERT = 0;
 
@@ -59,7 +60,6 @@ public class NewsFragment extends Fragment {
         //主线程
         @Override
         public void handleMessage(Message msg) {
-            String uniquekey, title, date, category, author_name, url, thumbnail_pic_s, thumbnail_pic_s02, thumbnail_pic_s03;
             switch (msg.what) {
                 case UPNEWS_INSERT:
                     //从服务器来获取NewsBean数据
@@ -72,7 +72,7 @@ public class NewsFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     //从服务器获取的数据缓存到本地数据库，注意去重插入的数据
                     NewsInfoBean newsInfo;
-                    for(int i = 0, len = contentItems.size(); i < len; ++i) {
+                    for (int i = 0, len = contentItems.size(); i < len; ++i) {
                         newsInfo = new NewsInfoBean(contentItems.get(i));
                         //测试是否请求的数据有重复
                         //List<NewsInfoBean> beans = LitePal.where("uniquekey = ?", contentItems.get(i).getUniquekey()).find(NewsInfoBean.class);
@@ -106,7 +106,6 @@ public class NewsFragment extends Fragment {
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         return view;
     }
-
 
     //当NewsFragment所在的Activity启动完成后调用，声明周期紧接在onCreateView()之后
     //使用此注解的讲解：https://blog.csdn.net/androidsj/article/details/79865091
@@ -150,17 +149,23 @@ public class NewsFragment extends Fragment {
 
         //异步加载数据，传入条目
         getDataFromNet(category);
-        //监听新闻列表子项
+
+        // 轻度按监听新闻列表子项
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("子项的数据为", "onItemClick: " + contentItems.get(position));
                 //获取点击条目的路径，传值显示WebView页面
                 String url = contentItems.get(position).getUrl();
+                Log.d("当前新闻子项的连接是：", "onItemClick: " + url);
                 String uniquekey = contentItems.get(position).getUniquekey();
-                final NewsBean.ResultBean.DataBean dataBean = (NewsBean.ResultBean.DataBean) contentItems.get(position);
-                /*Intent intent = new Intent(getActivity(), WebActivity.class);
-                intent.putExtra("url",url);
-                startActivity(intent);*/
+                String newsTitle = contentItems.get(position).getTitle();
+                Intent intent = new Intent(getActivity(), WebActivity.class);
+                intent.putExtra("pageUrl", url);
+                intent.putExtra("uniquekey", uniquekey);
+                intent.putExtra("news_title", newsTitle);
+                System.out.println("当前账号2222222222222：" + MainActivity.currentUserId);
+                startActivity(intent);
             }
         });
     }
@@ -176,7 +181,7 @@ public class NewsFragment extends Fragment {
                     e.printStackTrace();
                 }
                 //若快速点击tab，则会出现getActivity()为空的情况，但是第一次加载肯定不会出错，所以将要拦截，以防app崩溃
-                if(getActivity() == null)
+                if (getActivity() == null)
                     return;
                 //此处的用法：runOnUiThread必须是在主线程中调用，getActivity()获取主线程所在的活动，切换子线程到主线程
                 getActivity().runOnUiThread(new Runnable() {
@@ -196,25 +201,25 @@ public class NewsFragment extends Fragment {
     private void loaderRefreshData(final String category) {
         //top，shehui，guonei，guoji，yule，tiyu，junshi，keji，caijing，shishang
         String categoryName = "头条";
-        if(category.equals("top")) {
+        if (category.equals("top")) {
             categoryName = "头条";
-        } else if(category.equals("shehui")) {
+        } else if (category.equals("shehui")) {
             categoryName = "社会";
-        } else if(category.equals("guonei")) {
+        } else if (category.equals("guonei")) {
             categoryName = "国内";
-        } else if(category.equals("guoji")) {
+        } else if (category.equals("guoji")) {
             categoryName = "国际";
-        } else if(category.equals("yule")) {
+        } else if (category.equals("yule")) {
             categoryName = "娱乐";
-        } else if(category.equals("tiyu")) {
+        } else if (category.equals("tiyu")) {
             categoryName = "体育";
-        } else if(category.equals("junshi")) {
+        } else if (category.equals("junshi")) {
             categoryName = "军事";
-        } else if(category.equals("keji")) {
+        } else if (category.equals("keji")) {
             categoryName = "科技";
-        } else if(category.equals("caijing")) {
+        } else if (category.equals("caijing")) {
             categoryName = "财经";
-        } else if(category.equals("shishang")) {
+        } else if (category.equals("shishang")) {
             categoryName = "时尚";
         }
         //页数加1
@@ -228,20 +233,22 @@ public class NewsFragment extends Fragment {
         List<NewsInfoBean> beanList = LitePal.where("category = ?", categoryName).limit(pageSize).offset(offsetV).find(NewsInfoBean.class);
         Log.d("TAG", "查询的数量为：" + beanList.size());
         //若查询的结果为0，则重新定位页数为1
-        if(beanList.size() == 0) {
+        if (beanList.size() == 0) {
             pageNo = 1;
             offsetV = (pageNo - 1) * pageSize;
             beanList = LitePal.where("category = ?", categoryName).limit(pageSize).offset(offsetV).find(NewsInfoBean.class);
             Log.d("分页查询", "loaderRefreshData: 已经超过最大页数，归零并重新查询！");
         }
         Log.d("刷新查到的数据大小", "run: " + beanList.size());
-        for(int i = 0, len = beanList.size(); i < len; ++i) {
+        for (int i = 0, len = beanList.size(); i < len; ++i) {
             bean = new NewsBean.ResultBean.DataBean();
             bean.setDataBean(beanList.get(i));
             dataBeanList.add(bean);
             Log.d("刷新id：", "run: " + beanList.get(i));
         }
-        TabAdapter adapter = new TabAdapter(getActivity(), dataBeanList);
+        contentItems = dataBeanList;
+        //将dataBeanList赋值给全局的contentItems，否则点击新闻子项会出错,并且contentItems之前要清空，不然起不到更新视图的作用
+        TabAdapter adapter = new TabAdapter(getActivity(), contentItems);
         newsListView.setAdapter(adapter);
         //当adapter中的数据被更改后必须马上调用notifyDataSetChanged予以更新。
         adapter.notifyDataSetChanged();
@@ -297,10 +304,10 @@ public class NewsFragment extends Fragment {
                         NewsBean newsBean = null;
                         //不包括endIndex
                         Log.d("后台处理的数据为：", "run: " + result);
-                        if(!result.substring(0, 3).equals("404")) {
+                        if (!result.substring(0, 3).equals("404")) {
                             newsBean = new Gson().fromJson(result, NewsBean.class);
                             System.out.println(newsBean.getError_code());
-                            if("0".equals(""+newsBean.getError_code())) {
+                            if ("0".equals("" + newsBean.getError_code())) {
                                 //obtainmessage()方法是从消息池中拿来一个msg，不需要另开辟空间new，new需要重新申请，效率低，obtianmessage可以循环利用；
                                 Message msg = newsHandler.obtainMessage();
                                 msg.what = UPNEWS_INSERT;
@@ -352,5 +359,4 @@ public class NewsFragment extends Fragment {
         }
         return null;
     }
-
 }

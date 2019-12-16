@@ -42,6 +42,18 @@ dependencies {
     //添加Glide处理图片库的依赖
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 
+    // 添加Material Dialogs弹窗美化的依赖库
+    // core版：可以创建basic, list, single/multi choice, progress, input等弹框。
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+
+    // 添加第3方弹出窗
+    implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+
+    // 引入卡片式布局的依赖库
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -3,21 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single" >
-        <item android:id="@+id/nav_call" android:title="编辑资料" android:icon="@drawable/nav_call"
+        <item android:id="@+id/nav_edit" android:title="编辑资料" android:icon="@drawable/nav_personinfo"
             android:checkable="true"
             />
-        <item android:id="@+id/nav_friends" android:title="我的好友" android:icon="@drawable/nav_friends"
-
-            android:checkable="true"/>
-        <item android:id="@+id/nav_location" android:title="发布新闻" android:icon="@drawable/nav_publish"
+        <item android:id="@+id/nav_articles" android:title="我的文章" android:icon="@drawable/nav_articles"
             android:checkable="true"
             />
         <item android:id="@+id/nav_favorite" android:title="个人收藏" android:icon="@drawable/nav_favorite"
             android:checkable="true"
             />
-        <item android:id="@+id/nav_settings" android:title="系统设置" android:icon="@drawable/nav_settings"
+        <item android:id="@+id/nav_clear_cache" android:title="清除缓存" android:icon="@drawable/nav_clear_cache"
             android:checkable="true"
             />
-        <item android:id="@+id/nav_exit" android:title="切换账号" android:icon="@drawable/nav_switch" android:checkable="true"/>
+        <item android:id="@+id/nav_switch" android:title="切换账号" android:icon="@drawable/nav_switch" android:checkable="true"/>
     </group>
 </menu>
