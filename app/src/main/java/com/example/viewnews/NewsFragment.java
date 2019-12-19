@@ -261,7 +261,7 @@ public class NewsFragment extends Fragment {
             //子线程
             @Override //储备key：547ee75ef186fc55a8f015e38dcfdb9a
             protected String doInBackground(Void... params) { // 自己的key：af2d37d2ed31f7a074f1d49b5460a0b5，可以替换下面请求中的key
-                String path = "http://v.juhe.cn/toutiao/index?type=" + data + "&key=547ee75ef186fc55a8f015e38dcfdb9a";
+                String path = "http://v.juhe.cn/toutiao/index?type=" + data + "&key=af2d37d2ed31f7a074f1d49b5460a0b5";
                 URL url = null;
                 try {
                     url = new URL(path);

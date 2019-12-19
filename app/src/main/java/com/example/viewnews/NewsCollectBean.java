@@ -13,7 +13,6 @@ public class NewsCollectBean extends LitePalSupport {
     // 新闻连接
     private String newsUrl;
 
-
     public String getUserIdNumer() {
         return userIdNumer;
     }

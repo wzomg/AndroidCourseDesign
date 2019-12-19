@@ -57,6 +57,7 @@ public class EditArticleActivity extends BaseActivity {
         setContentView(R.layout.activity_edit_article);
         userID = getIntent().getStringExtra("userId");
         Toolbar toolbar = (Toolbar) findViewById(R.id.article_edit_toolbar);
+        toolbar.setTitle("编辑文章");
         List<UserInfo> userInfos = LitePal.where("userAccount = ?", userID).find(UserInfo.class);
         article.setUserId(userID);
         article.setArticleAuthor(userInfos.get(0).getNickName());
