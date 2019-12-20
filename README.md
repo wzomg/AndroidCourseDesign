@@ -1,13 +1,14 @@
 # viewnews
 安卓课设开发项目-看点新闻App
+演示传送门：[av79880165](https://www.bilibili.com/video/av79880165/)
 
-## 项目运行部分效果图
+## 项目运行效果图
 
-<img src="./resultImage/register.jpeg" style="width: 210px; height: 400px" alt="注册界面" /><img src="./resultImage/login.jpeg" style="width: 210px; height: 400px" alt="登录界面" /><img src="./resultImage/personalinfo.jpeg" style="width: 210px; height: 400px" alt="个人信息界面" />
-<img src="./resultImage/editarticle.jpeg" style="width: 210px; height: 400px" alt="编写文章界面" /><img src="./resultImage/articledetail.jpeg" style="width: 210px; height: 400px" alt="文章详情界面" /><img src="./resultImage/myarticle.jpeg" style="width: 210px; height: 400px" alt="我的文章界面" />
-<img src="./resultImage/collectionlist.jpeg" style="width: 210px; height: 400px" alt="我的收藏界面" /><img src="./resultImage/viewpage.jpeg" style="width: 210px; height: 400px" alt="新闻详情界面" />
+<img src="./resultImage/register.jpeg" width="30%" alt="注册界面" /><img src="./resultImage/login.jpeg" width="30%" alt="登录界面" /><img src="./resultImage/personalinfo.jpeg" width="30%" alt="个人信息界面" />
+<img src="./resultImage/editarticle.jpeg" width="30%" alt="编写文章界面" /><img src="./resultImage/articledetail.jpeg" width="30%" alt="文章详情界面" /><img src="./resultImage/myarticle.jpeg" width="30%" alt="我的文章界面" />
+<img src="./resultImage/collectionlist.jpeg" width="30%" alt="我的收藏界面" /><img src="./resultImage/viewpage.jpeg" width="30%" alt="新闻详情界面" />
 
-<img src="./resultImage/clearcache.jpeg" style="width: 210px; height: 400px" alt="清除缓存" /><img src="./resultImage/feedback.jpeg" style="width: 210px; height: 400px" alt="反馈事件" />
+<img src="./resultImage/clearcache.jpeg" width="30%" alt="清除缓存" /><img src="./resultImage/feedback.jpeg" width="30%" alt="反馈事件" />
 
 
 
